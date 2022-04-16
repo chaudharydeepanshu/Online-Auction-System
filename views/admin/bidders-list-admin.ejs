@@ -1,0 +1,101 @@
+<%- include('../partials/header') %>
+<!--  -->
+<% var productImageFromDB = listingDetail.listings[0].productImage; %>
+<!--  -->
+<% var productNameFromDB = listingDetail.listings[0].productName; %>
+<!--  -->
+<% var productMaximumBidFromDB = 0; %>
+<!--  -->
+<% var arrayOfBids = []; %>
+<!--  -->
+<% for (var i = 0; i < biddingsDetails.length; i++) { %>
+<!--  -->
+<% arrayOfBids.push(biddingsDetails[i].biddings[0].productBid); %>
+<!--  -->
+<% } %>
+<!--  -->
+<% for (var i = 0; i < arrayOfBids.length; i++) { %> <% if
+(productMaximumBidFromDB < arrayOfBids[i] ) { %> <% productMaximumBidFromDB =
+arrayOfBids[i]; %> <% } %> <% } %>
+<!--  -->
+<% var productEndTimeFromDB = listingDetail.listings[0].productEndTime; %>
+<!--  -->
+<% var productCategoryFromDB = listingDetail.listings[0].productCategory; %>
+
+<div class="container-fluid">
+  <h2 class="list-heading">Product</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Category</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Higgest Bid</th>
+          <th scope="col">Bid Endtime</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>
+            <% if (productImageFromDB != null) {%>
+            <img
+              src="data:<%=productImageFromDB.img.contentType%>;base64,
+              <%=productImageFromDB.img.data.toString('base64')%>"
+              width="200"
+              alt="product image"
+            />
+            <% } else { %>
+            <img
+              src="/images/placeholder-images/placeholder-image-300.png"
+              width="200"
+              alt="placeholder product image"
+            />
+            <% } %>
+          </td>
+          <td><%= productCategoryFromDB %></td>
+          <td><%= productNameFromDB %></td>
+          <td>Rs. <%= productMaximumBidFromDB %></td>
+          <td><%= productEndTimeFromDB %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2 class="list-heading">Bidders List</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Bid Id</th>
+          <th scope="col">Bid By</th>
+          <th scope="col">Bid Amount</th>
+          <th scope="col">Time Of Bid</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i =0; i < biddingsDetails.length ; i++ ) { %>
+        <tr>
+          <th scope="row"><%= (i+1) %></th>
+          <td><%= biddingsDetails[i].name %></td>
+          <td>Rs. <%= biddingsDetails[i].biddings[0].productBid %></td>
+          <td><%= biddingsDetails[i].biddings[0].bidTime %></td>
+          <td>
+            <a
+              class="btn-close btn-close-white"
+              href="/remove-bidding/<%= (biddingsDetails[i].biddings[0]._id) %>"
+              role="button"
+              type="button"
+              aria-label="Delete"
+            ></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

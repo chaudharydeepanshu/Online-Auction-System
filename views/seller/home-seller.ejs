@@ -1,0 +1,86 @@
+<%- include('../partials/header') %>
+
+<main class="flex-shrink-0">
+  <div class="container-fluid">
+    <h2 class="list-heading">Your listings</h2>
+    <div class="table-responsive">
+      <table
+        class="table table-bordered table-hover table-striped table-dark text-center"
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Starting Bid</th>
+            <th scope="col">Higgest Bid</th>
+            <th scope="col">Bid Endtime</th>
+            <th scope="col">Edit Listing</th>
+            <th scope="col">Bidders</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i =0; i < sellerListingDetails.length ; i++ ) { %>
+          <tr>
+            <th scope="row"><%= (i+1) %></th>
+            <td>
+              <% if (sellerListingDetails[i].productImage != null) {%>
+              <img
+                src="data:<%=sellerListingDetails[i].productImage.img.contentType%>;base64,
+              <%=sellerListingDetails[i].productImage.img.data.toString('base64')%>"
+                width="200"
+                alt="product image"
+              />
+              <% } else { %>
+              <img
+                src="/images/placeholder-images/placeholder-image-300.png"
+                width="200"
+                alt="placeholder product image"
+              />
+              <% } %>
+            </td>
+            <td><%= sellerListingDetails[i].productCategory %></td>
+            <td><%= sellerListingDetails[i].productName %></td>
+            <td>Rs. <%= sellerListingDetails[i].productMinimumBid %></td>
+            <td>Rs. <%= sellerListingDetails[i].productHiggestBid %></td>
+            <td><%= sellerListingDetails[i].productEndTime %></td>
+            <td>
+              <a
+                class="btn btn-light"
+                href="/listings/product/<%= (sellerListingDetails[i].productId) %>"
+                role="button"
+                >Edit</a
+              >
+              <!-- Todo: make this listing editable -->
+            </td>
+            <td>
+              <a
+                class="btn btn-light"
+                href="/listings/product-bidders-list/<%= (sellerListingDetails[i].productId) %>"
+                role="button"
+                >Bidders</a
+              >
+            </td>
+            <td>
+              <a
+                class="btn-close btn-close-white"
+                href="/remove-listing/<%= (sellerListingDetails[i].productId) %>"
+                role="button"
+                type="button"
+                aria-label="Delete"
+              ></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <a class="btn btn-dark btn-lg" href="/create-listing" role="button"
+      >+ Create new listing</a
+    >
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

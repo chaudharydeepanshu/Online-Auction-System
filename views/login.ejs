@@ -1,0 +1,72 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h1>Login</h1>
+
+  <% if(typeof alerts !='undefined' ) { %> <% for(var i=0 ; i < alerts.length;
+  i++) { %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Oops! </strong>
+    <%= alerts[i] %>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% } %> <% } %>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <!-- Makes POST request to /login route -->
+          <form action="/login" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                required
+                type="email"
+                class="form-control"
+                name="email"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                required
+                type="password"
+                class="form-control"
+                name="password"
+              />
+            </div>
+            <button type="submit" class="btn btn-dark">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <a
+            class="btn btn-danger"
+            style="background-color: #dd4b39"
+            href="/auth/google"
+            role="button"
+          >
+            <i class="fab fa-google"></i>
+            Sign In with Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

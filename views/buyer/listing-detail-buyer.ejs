@@ -1,0 +1,108 @@
+<%- include('../partials/header') %>
+<!--  -->
+<% var productImageFromDB = foundListingList.listings[0].productImage; %>
+<!--  -->
+<% var productNameFromDB = foundListingList.listings[0].productName; %>
+<!--  -->
+<% var productDescriptionFromDB =
+foundListingList.listings[0].productDescription; %>
+<!--  -->
+<% var productMinimumBidFromDB = foundListingList.listings[0].productMinimumBid;
+%>
+<!--  -->
+<% var productEndTimeFromDB = foundListingList.listings[0].productEndTime; %>
+<!--  -->
+<% var productCategoryFromDB = foundListingList.listings[0].productCategory; %>
+<!--  -->
+<% var productBidFromDB; %>
+<!--  -->
+<% if (foundBiddingList == null) { %>
+<!--  -->
+<% productBidFromDB = ""; %>
+<!--  -->
+<% } else { %>
+<!--  -->
+<% productBidFromDB = foundBiddingList.biddings[0].productBid; %>
+<!--  -->
+<% } %>
+
+<div class="container-fluid">
+  <h2 class="list-heading">Product details</h2>
+  <!-- Makes POST request to /create-bid/:id route -->
+  <form
+    action="/create-bid/<%= foundListingList.listings[0]._id %>"
+    method="POST"
+  >
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped table-dark">
+        <tbody>
+          <tr>
+            <th scope="row">Product Image</th>
+            <td>
+              <% if (productImageFromDB != null) {%>
+              <img
+                src="data:<%=productImageFromDB.img.contentType%>;base64,
+              <%=productImageFromDB.img.data.toString('base64')%>"
+                width="200"
+                alt="product image"
+              />
+              <% } else { %>
+              <img
+                src="/images/placeholder-images/placeholder-image-300.png"
+                width="200"
+                alt="placeholder product image"
+              />
+              <% } %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Product Name</th>
+            <td><%= productNameFromDB %></td>
+          </tr>
+          <tr>
+            <th scope="row">Product Description</th>
+            <td><%= productDescriptionFromDB %></td>
+          </tr>
+          <tr>
+            <th scope="row">Category</th>
+            <td><%= productCategoryFromDB %></td>
+          </tr>
+          <tr>
+            <th scope="row">Minimum Bid(in Rs.)</th>
+            <td>Rs. <%= productMinimumBidFromDB %></td>
+          </tr>
+          <tr>
+            <th scope="row">Auction End Time(in Min.)</th>
+            <td><%= productEndTimeFromDB %></td>
+          </tr>
+          <tr>
+            <th scope="row">Your Bid(in Rs)</th>
+            <td>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Rs.</span>
+                <input
+                  type="Number"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                  min="<%= productMinimumBidFromDB %>"
+                  max=""
+                  name="productBid"
+                  value="<%= productBidFromDB %>"
+                />
+                <span class="input-group-text">.00</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Note: Your bid must be more than minimum bid</p>
+    <% if (foundBiddingList == null) { %>
+    <button type="submit" class="btn btn-dark btn-lg">Create Bid</button>
+    <% } else { %>
+    <button type="submit" class="btn btn-dark btn-lg">Update Bid</button>
+    <% } %>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

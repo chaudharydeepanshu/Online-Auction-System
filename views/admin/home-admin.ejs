@@ -1,0 +1,70 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid">
+  <h2 class="list-heading">Listings</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Category</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Minimum Bid</th>
+          <th scope="col">Maximum Bid</th>
+          <th scope="col">Bid Endtime</th>
+          <th scope="col">View Listing</th>
+          <th scope="col">Bidders</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var j =0; j < listingDetails.length ; j++ ) { %>
+        <tr>
+          <th scope="row"><%= (j+1) %></th>
+          <td>
+            <% if (listingDetails[j].productImage !=
+              null) {%>
+            <img src="data:<%=listingDetails[j].productImage.img.contentType%>;base64,
+                <%=listingDetails[j].productImage.img.data.toString('base64')%>" width="200"
+              alt="product image" />
+            <% } else { %>
+            <img src="/images/placeholder-images/placeholder-image-300.png" width="200"
+              alt="placeholder product image" />
+            <% } %>
+          </td>
+          <td>
+            <%= listingDetails[j].productCategory %>
+          </td>
+          <td><%= listingDetails[j].productName %></td>
+          <td>
+            Rs. <%= listingDetails[j].productMinimumBid
+              %>
+          </td>
+          <td>
+            Rs. <%= listingDetails[j].productHiggestBid
+              %>
+          </td>
+          <td>
+            <%= listingDetails[j].productEndTime %>
+          </td>
+          <td>
+            <a class="btn btn-light" href="/listings/product/<%= (listingDetails[j].productId) %>"
+              role="button">View</a>
+          </td>
+          <td>
+            <a class="btn btn-light" href="/listings/product-bidders-list/<%= (listingDetails[j].productId) %>"
+              role="button">View</a>
+          </td>
+          <td>
+            <a class="btn btn-light" href="/remove-listing/<%= (listingDetails[j].productId) %>"
+              role="button">Delete</a>
+          </td>
+        </tr>
+         <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

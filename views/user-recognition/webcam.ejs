@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Webcam</title>
+    <script defer type="text/javascript" src="/scripts/face-api.min.js"></script>
+    <script defer type="text/javascript" src="/scripts/script.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video" width="720" height="560" autoplay muted></video>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Webcam</title>
+    <script
+      defer
+      type="text/javascript"
+      src="/scripts/face-api.min.js"
+    ></script>
+    <script defer type="text/javascript" src="/scripts/script.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      canvas {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contentarea">
+        <form action="/webcam" method="POST">
+      <h1>
+        Using Javascript to capture Photo
+      </h1>
+      <div class="camera">
+        <video id="video">Video stream not available.</video>
+      </div>
+      <div><button id="startbutton">Take photo</button></div>
+
+      <canvas id="canvas"></canvas>
+      <div class="output">
+        <img id="photo" alt="The screen capture will appear in this box." />
+      </div>
+      
+        <input type="hidden" id="base64ForImg" name="base64ForImg" value="" />
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+    </div>
+  </body>
+</html> -->
+
+<%- include('../partials/header') %>
+
+<main class="flex-shrink-0">
+  <div class="contentarea">
+    <form action="/webcam" method="POST">
+      <h1>
+        Capture Photo For Verification
+      </h1>
+      <div class="camera">
+        <video id="video">Video stream not available.</video>
+      </div>
+      <div>
+        <button id="startbutton" class="btn btn-dark">Take photo</button>
+      </div>
+
+      <canvas id="canvas"></canvas>
+      <div class="output">
+        <img id="photo" alt="The screen capture will appear in this box." />
+      </div>
+
+      <input type="hidden" id="srcForImg" name="srcForImg" />
+      <div><button type="submit" class="btn btn-dark">Submit</button></div>
+    </form>
+  </div>
+  <div class="jumbotron centered">
+    <div class="container"></div>
+  </div>
+</main>
+
+<script defer type="text/javascript" src="/scripts/face-api.js"></script>
+<script defer type="text/javascript" src="/scripts/script.js"></script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+<div class="jumbotron centered">
+  <div class="container">
+    <!-- <i class="fas fa-money fa-6x"></i> -->
+    <h1 class="display-3">Link is expired or wrong</h1>
+    <p class="lead">
+      Oops! It seems that the verification link is either expired or wrong.
+    </p>
+    <p class="lead">
+      If you have registered before but didn't verify then follow the below
+      button to recreate a fresh verification link.
+    </p>
+    <a class="btn btn-dark btn-lg" href="/resend-token" role="button"
+      >Resend Link</a
+    >
+    <p class="lead">
+      If you have not registered before then follow the below button to register
+      your email.
+    </p>
+    <a class="btn btn-dark btn-lg" href="/register" role="button">Register</a>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

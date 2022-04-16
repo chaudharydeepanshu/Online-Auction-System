@@ -1,0 +1,115 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid">
+  <h2 class="list-heading">Product details</h2>
+  <!-- Makes POST request to /new-listing route -->
+  <form
+    action="/create-listing/new"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped table-dark">
+        <tbody>
+          <tr>
+            <th scope="row">Product Name</th>
+            <td>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default"
+                  name="productName"
+                  required
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Product Description</th>
+            <td>
+              <div class="input-group">
+                <textarea
+                  class="form-control"
+                  aria-label="With textarea"
+                  name="productDescription"
+                  required
+                ></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Minimum Bid(in Rs.)</th>
+            <td>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Rs.</span>
+                <input
+                  type="Number"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                  min=""
+                  max=""
+                  name="productMinimumBid"
+                  required
+                />
+                <span class="input-group-text">.00</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Auction End Time(in Min.)</th>
+            <td>
+              <input
+                type="datetime-local"
+                name="productEndTime"
+                value="<%= currentDateTime %>"
+                min="<%= currentDateTime %>"
+                max="2035-06-14T00:00"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Category</th>
+            <td>
+              <div class="input-group mb-3">
+                <select
+                  class="form-select"
+                  id="inputGroupSelect01"
+                  name="productCategory"
+                  required
+                >
+                  <option value="" selected disabled hidden
+                    >--Please choose a category--</option
+                  >
+                  <option value="Furniture">Furniture</option>
+                  <option value="Vintage">Vintage</option>
+                  <option value="Retro">Retro</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Upload Image</th>
+            <td>
+              <div class="input-group mb-3">
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  class="form-control"
+                  id="inputGroupFile02"
+                  name="image"
+                  required
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button type="submit" class="btn btn-dark btn-lg">Create listing</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
