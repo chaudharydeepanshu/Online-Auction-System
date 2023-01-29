@@ -37,7 +37,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "16.13.0"
+    "node": "16.17.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.1",
