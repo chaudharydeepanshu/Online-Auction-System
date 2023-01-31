@@ -13,7 +13,7 @@
 - Implementation new users registration( with email verification) and existing users login.
 - Implementation dynamic pages with distinction for Admin, Seller and Buyer account. 
 - Implementation of sessions using cookies to increase user security.
-- Make website available live at https://groas.herokuapp.com
+- Make website available live at https://oas.up.railway.app/
 - Implementation of listing and biddings through users.
 - Implementation of login through facial recognition.
 
